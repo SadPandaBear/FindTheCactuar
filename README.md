@@ -2,6 +2,8 @@
 
 Find the Cactuar in this amazing VR experience built with Facebook's [React VR](https://facebook.github.io/react-vr/).
 
+![sample image](https://github.com/SadPandaBear/FindTheCactuar/blob/master/screenshot.png)
+
 ### Import
 
 You can always integrate the minigame into any website.
