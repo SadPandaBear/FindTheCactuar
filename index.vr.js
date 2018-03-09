@@ -9,72 +9,40 @@ import {
   Video
 } from 'react-vr';
 
-export default class Nevermore extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      steps: [
-        {
-          panoImg: 'matrix.jpg',
-          translate: {translate: [-2, -2, -3]}
-        },
-        {
-          panoImg: 'space.jpg',
-          translate: {translate: [2, 1, 4]}
-        },
-        {
-          panoImg: 'minecraft.jpg',
-          translate: {translate: [-2, 0, -2]}
-        },
-        {
-          panoImg: 'train.jpg',
-          translate: {translate: [0, -4, 0]}
-        },
-        {
-          panoImg: 'starry-sky.jpg',
-          translate: {translate: [-4, 0, -1]}
-        },
-        {
-          panoImg: 'winter-outdoor.jpg',
-          translate: {translate: [0, 0, 3]}
-        },
-        {
-          panoImg: 'psy.jpg',
-          translate: {translate: [0, 0, -1]}
-        },
-      ],
-      actualStep: 0
-    }
+import cactuar from './cactuar';
+import steps from './steps';
+
+class App extends React.Component {
+  state = {
+    stepIndex: 0,
+    step: steps[0]
   }
 
   render() {
-    let cactuar = {
-      obj: asset('character/Cactuar.obj'),
-      mtl: asset('character/Cactuar.mtl')
-    }
-
+    const { step, stepIndex } = this.state;
     return (
       <View>
-        <Pano source={asset(`images/${this.state.steps[this.state.actualStep].panoImg}`)}/>
-        {this.state.actualStep === this.state.steps.length - 1 ?
-         <Video source={{uri: 'assets/Congratulations.mp4'}}
+        <Pano source={asset(`images/${step.panoImg}`)}/>
+        {stepIndex === steps.length - 1 ?
+          <Video source={{uri: 'assets/Congratulations.mp4'}}
             style={{
               width: 1, 
               height: 1,
               layoutOrigin: [0.5, 0.5],
-              transform: [this.state.steps[this.state.actualStep].translate]
-            }
-          } />
-        : <Model
-            onEnter={() => this.setState({actualStep: ++this.state.actualStep})}
-            style={{
-              transform: [this.state.steps[this.state.actualStep].translate, {scale: 0.0003 }], 
-              
-            }}
-            source={cactuar} />}
+              transform: [step.translate]
+            }} />
+          : <Model
+              onEnter={() => this.setState({
+                stepIndex: stepIndex + 1, 
+                step: steps[stepIndex + 1]
+              })}
+              style={{
+                transform: [step.translate, {scale: 0.0003 }], 
+              }}
+              source={cactuar} />}
       </View>
     );
-  }
+  };
 };
 
-AppRegistry.registerComponent('Nevermore', () => Nevermore);
+AppRegistry.registerComponent('App', () => App);
