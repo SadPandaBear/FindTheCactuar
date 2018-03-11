@@ -24,7 +24,7 @@ class App extends React.Component {
       <View>
         <Pano source={asset(`images/${step.panoImg}`)}/>
         {stepIndex === steps.length - 1 ?
-          <Video source={{uri: 'assets/Congratulations.mp4'}}
+          <Video source={{uri: 'Congratulations.mp4'}}
             style={{
               width: 1, 
               height: 1,
