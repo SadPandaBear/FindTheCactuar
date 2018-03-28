@@ -10,15 +10,11 @@
     <!-- When you're ready to deploy your app, update this line to point to your compiled client.bundle.js -->
     <script src="client.bundle.js"></script>
     <script>
-      function inIframe () { try { return window !== window.top; } catch (e) { return true; } }
-      function isMobile() { return typeof window.orientation !== 'undefined' }
-      if (!inIframe() && !isMobile()) {
-        ReactVR.init(
-          'index.bundle.js',
-          document.body,
-          { assetRoot: 'static_assets/' }
-        );
-      }
+      ReactVR.init(
+        'index.bundle.js',
+        document.body,
+        { assetRoot: 'static_assets/' }
+      );
     </script>
   </body>
 </html>
